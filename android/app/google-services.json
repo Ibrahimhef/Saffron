@@ -1,0 +1,109 @@
+{
+  "project_info": {
+    "project_number": "948287533653",
+    "firebase_url": "https://saffronapp-436aa.firebaseio.com",
+    "project_id": "saffronapp-436aa",
+    "storage_bucket": "saffronapp-436aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948287533653:android:4bc7c4e7af40078ffddadc",
+        "android_client_info": {
+          "package_name": "com.example.swe444"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948287533653-vtfkhj2nn0fbvtekli01ht0kqms3fn26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swe444",
+            "certificate_hash": "c856d4f8a5bbdd844933d387728cc19595726239"
+          }
+        },
+        {
+          "client_id": "948287533653-g6v98b6suecb0ck1hokl650ke3touhnv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swe444",
+            "certificate_hash": "fa0f1bdd7bbb09be3152d52d62c674aa7549b63f"
+          }
+        },
+        {
+          "client_id": "948287533653-iehb2mo5bg861s9oqs09tijtkd0opn08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swe444",
+            "certificate_hash": "c6baca9efeaff5665c771f210adaa670d9c079e2"
+          }
+        },
+        {
+          "client_id": "948287533653-vi843js9g675200a4l43d22e37d01eat.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swe444",
+            "certificate_hash": "1fcb15d8f1c9370d55cda2e42868ef0a913afe31"
+          }
+        },
+        {
+          "client_id": "948287533653-ddna2cpm92m7p0gr29oq3n2arfv6bami.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swe444",
+            "certificate_hash": "e8c4760a273b36f717085b0000855dd84f5efa15"
+          }
+        },
+        {
+          "client_id": "948287533653-7v2u3oujg5begarrnm52qt006stfck4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEMdIF0YQ7wqUh3VBRHjFo3S9Ca_gRYno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948287533653-7v2u3oujg5begarrnm52qt006stfck4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948287533653:android:a85fbdea58c3231efddadc",
+        "android_client_info": {
+          "package_name": "com.saffron.swe444"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948287533653-7v2u3oujg5begarrnm52qt006stfck4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEMdIF0YQ7wqUh3VBRHjFo3S9Ca_gRYno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948287533653-7v2u3oujg5begarrnm52qt006stfck4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
