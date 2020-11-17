@@ -73,28 +73,13 @@ class Loginstate extends State<Login> {
                                         setState(() {
                                           loading = true;
                                         });
-
                                         dynamic result = await _authServices
                                             .SingInWithEmailAndPassword(
                                                 email, password);
-
-                                        // print(result.toString());
-                                        // if (result == null) {
-
-                                        //   setState(() {
-                                        //     loading = false;
-                                        //     error = "email is invalid";
-                                        //     errorMessage = Text(error,
-                                        //         style:
-                                        //             textStyle().style5(weidth));
-                                        //   });
-                                        // } else {}
                                       }
                                     } catch (e) {
-                                      // if (e is PlatformException) {
                                       if (e.code == "ERROR_WRONG_PASSWORD" ||
                                           e.code == "ERROR_USER_NOT_FOUND") {
-                                        // print("this email already exist");
                                         setState(() {
                                           loading = false;
                                           error =
@@ -114,13 +99,6 @@ class Loginstate extends State<Login> {
                                                   textStyle().style5(weidth));
                                         });
                                       }
-                                      // } else {
-                                      // setState(() {
-                                      //   loading = false;
-                                      // });
-
-                                      print(e.toString());
-                                      // }
                                     }
                                   },
                                   child: Image(

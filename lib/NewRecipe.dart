@@ -124,6 +124,7 @@ class addPage extends State<AddPage> {
                   element.email,
                   fileURL);
               Navigator.of(context).pop();
+              Navigator.of(context).pop();
               // print("email email : $email");
             }
           });
@@ -249,7 +250,10 @@ class addPage extends State<AddPage> {
                       onChanged: (value) => description = value,
                       validator: (value) =>
                           value.isEmpty ? "fill the description" : null,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.newline,
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,
+                      maxLines: 10,
                       onFieldSubmitted: (_) =>
                           FocusScope.of(context).focusedChild,
                       decoration: InputDecoration(
@@ -297,22 +301,6 @@ class addPage extends State<AddPage> {
                           )
                         ],
                       )
-
-                      // TextFormField(
-                      //   onChanged: (value) => ingredients = value,
-                      //   validator: (value) =>
-                      //       value.isEmpty ? "fill the ingredients" : null,
-                      //   textInputAction: TextInputAction.newline,
-                      //   onFieldSubmitted: (_) =>
-                      //       FocusScope.of(context).nextFocus(),
-                      //   keyboardType: TextInputType.multiline,
-                      //   minLines: 1,
-                      //   maxLines: 100,
-                      //   decoration: InputDecoration(
-                      //     hintText: "Ingredients:",
-                      //     border: InputBorder.none,
-                      //   ),
-                      // ),
                       ),
                   //Steps
                   Container(
@@ -452,16 +440,15 @@ class addPage extends State<AddPage> {
                         if (list_step_index != 2) step += ff;
                         CoolAlert.show(
                           context: context,
-                          type: CoolAlertType.success,
+                          type: CoolAlertType.loading,
                           confirmBtnColor: Color(0xfff2780c),
-                          confirmBtnText: "Done",
                           text: "Your recipe is added",
                           barrierDismissible: false,
                           onConfirmBtnTap: () {
                             Navigator.of(context).pop();
-                            uploadFile();
                           },
                         );
+                        uploadFile();
                       }
                     },
                   ),

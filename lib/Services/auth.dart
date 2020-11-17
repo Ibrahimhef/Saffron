@@ -23,23 +23,22 @@ class AuthServices {
 
   Stream<User> get user {
     return _auth.onAuthStateChanged
-        // .map((FirebaseUser user) => _userFormFireBaseUser(user));
         .map(_userFormFireBaseUser);
   }
 
-  //sign in anon
+
   Future SignInAnon() async {
     try {
       AuthResult result = await _auth.signInAnonymously();
       FirebaseUser user = result.user;
       return _userFormFireBaseUser(user);
     } catch (e) {
-      // print(e.toString());
+
       return null;
     }
   }
 
-  //sign in with google account edit by albra
+
   Future signinwithgoogleaccount() async {
     try {
       GoogleSignInAccount googleacc = await googleSignIn.signIn();
@@ -53,7 +52,7 @@ class AuthServices {
         AuthResult res = await _auth.signInWithCredential(authCredential);
 
         FirebaseUser user = await _auth.currentUser();
-        // print("email : ${user.email}   name: ${user.displayName}");
+
         await DatabaseService(uid: user.uid)
             .insertUser(user.uid, user.displayName, user.email, "password");
         return _userFormFireBaseUser(user, email: user.email);
@@ -65,7 +64,7 @@ class AuthServices {
   }
 
   Future SingInWithEmailAndPassword(String email, String password) async {
-    // try {
+
     AuthResult result = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
     FirebaseUser user = result.user;
@@ -78,46 +77,31 @@ class AuthServices {
       });
     });
     return _userFormFireBaseUser(user, email: email, full_name: full_name);
-    // } catch (e) {
-    //   // print(e.toString());
-    //   return null;
-    // }
+
   }
 
   Future RegisterWithEmailAndPassword(
       String full_name, String email, String password) async {
-    // try {
+
     AuthResult result = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
     FirebaseUser user = result.user;
     await DatabaseService(uid: user.uid)
         .insertUser(user.uid, full_name, email, password);
     return _userFormFireBaseUser(user, email: email, full_name: full_name);
-    // } catch (e) {
-    //   // print(e.toString());
-    //   return null;
-    // }
+
   }
 
   Future ForgetPassword(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
-      // FirebaseUser user = result.user;
-      // return _userFormFireBaseUser(user);
     } catch (e) {
-      // print(e.toString());
-      // return null;
     }
   }
 
 //sign out edit by albra
   Future SignOut() async {
     try {
-      // FirebaseUser user = await _auth.currentUser();
-      // if (user.providerData[1].providerId == 'google.com') {
-      //   await googleSignIn.disconnect();
-      // }
-      print("Sign out");
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());

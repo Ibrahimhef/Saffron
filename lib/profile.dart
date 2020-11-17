@@ -25,14 +25,18 @@ class Profile extends StatefulWidget {
 class profile extends State<Profile> {
   final double weidth, height;
   final List ListOfRecipeces;
-  final String name;
+  String name;
   final String email;
   profile(
       this.weidth, this.height, this.ListOfRecipeces, this.email, this.name);
   List ListOwnRec = [];
   final AuthServices _auth = AuthServices();
   bool loading = false;
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    name=name;
+  }
   @override
   Widget build(BuildContext context) {
     // collectInfo();
@@ -100,49 +104,53 @@ class profile extends State<Profile> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            RaisedButton(
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(color: Colors.red)),
-                              color: Color(0xffDD7804),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: AutoSizeText(
-                                  'Log out',
-                                  style: TextStyle(
-                                      fontFamily: 'OleoScript', fontSize: 20),
+                            Container(
+                              child: RaisedButton(
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(color: Colors.red)),
+                                color: Color(0xffDD7804),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: AutoSizeText(
+                                    'Log out',
+                                    style: TextStyle(
+                                        fontFamily: 'OleoScript', fontSize: 20),
+                                  ),
                                 ),
+                                onPressed: () async {
+                                  setState(() {
+                                    loading = true;
+                                  });
+                                  await _auth.SignOut();
+                                  Navigator.of(context).pop();
+                                },
                               ),
-                              onPressed: () async {
-                                setState(() {
-                                  loading = true;
-                                });
-                                await _auth.SignOut();
-                                Navigator.of(context).pop();
-                              },
                             ),
-                            RaisedButton(
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(color: Colors.red)),
-                              color: Color(0xffDD7804),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: AutoSizeText(
-                                  'Your Recipes',
-                                  style: TextStyle(
-                                      fontFamily: 'OleoScript', fontSize: 20),
+                            Container(
+                              child: RaisedButton(
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(color: Colors.red)),
+                                color: Color(0xffDD7804),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: AutoSizeText(
+                                    'Your Recipes',
+                                    style: TextStyle(
+                                        fontFamily: 'OleoScript', fontSize: 20),
+                                  ),
                                 ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      new MaterialPageRoute(
+                                          builder: (context) =>
+                                          new Profile_list(weidth, height, ListOfRecipeces,email)));
+                                },
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    new MaterialPageRoute(
-                                        builder: (context) =>
-                                        new Profile_list(weidth, height, ListOfRecipeces,email)));
-                              },
                             ),
                           ],
                         ),
