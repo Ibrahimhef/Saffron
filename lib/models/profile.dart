@@ -3,5 +3,6 @@ class profile1 {
   final String name;
   final String email;
   final String password;
-  profile1({this.uid, this.name, this.email, this.password});
+  final bool admin;
+  profile1({this.uid, this.name, this.email, this.password, this.admin});
 }

@@ -8,9 +8,11 @@ class Meal {
   final int duration;
   final String email;
   final String imageURL;
+  final bool display;
 
   Meal(
-      {this.id,
+      {this.display,
+      this.id,
       this.category,
       this.title,
       this.description,

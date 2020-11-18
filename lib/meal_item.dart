@@ -2,24 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:swe444/DetiledRecipe.dart';
 import 'package:swe444/models/meals.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-
+import 'DetildPage_admin.dart';
 class MealItem extends StatelessWidget {
   final Meal meal;
   final double weidth, height;
-  MealItem(this.weidth, this.height, this.meal);
+  final bool isAdmin;
+  MealItem(this.weidth, this.height, this.meal, this.isAdmin);
 
   void SelectMeal(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return DetildPage(this.weidth, this.height, meal);
     }));
   }
-
+  void SelectMealAdmin(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return DetildPage_admin(this.weidth, this.height, meal);
+    }));
+  }
   @override
   Widget build(BuildContext context) {
     return InkWell(
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
-      onTap: () => SelectMeal(context),
+      onTap: () => isAdmin?SelectMealAdmin(context):SelectMeal(context),
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8),
         child: Container(

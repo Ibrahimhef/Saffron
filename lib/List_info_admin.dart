@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:provider/provider.dart';
-import 'package:swe444/DetiledRecipe.dart';
 import 'package:swe444/meal_item.dart';
 import 'package:swe444/models/meals.dart';
 
-class ListInfo extends StatefulWidget {
+class ListInfo_admin extends StatefulWidget {
   final double weidth, height;
 
-  ListInfo(this.weidth, this.height);
+  ListInfo_admin(this.weidth, this.height);
 
   @override
   State<StatefulWidget> createState() {
-    return listInfo(weidth, height);
+    return listInfo_admin(weidth, height);
   }
 }
 
-class listInfo extends State<ListInfo> {
+class listInfo_admin extends State<ListInfo_admin> {
   final double weidth, height;
   static int category;
   List meal = [];
-  listInfo(this.weidth, this.height);
+  listInfo_admin(this.weidth, this.height);
   initState(){
     category=0;
   }
@@ -31,7 +30,7 @@ class listInfo extends State<ListInfo> {
       meal.clear();
       final currentMeal = Provider.of<List<Meal>>(context);
       for (int i = 0; i < currentMeal.length; i++) {
-        if (currentMeal[i].category == category && currentMeal[i].display) {
+        if (currentMeal[i].category == category && !currentMeal[i].display ) {
           meal.add(currentMeal[i]);
         }
       }
@@ -44,7 +43,7 @@ class listInfo extends State<ListInfo> {
       child: ListView.builder(
           itemCount: meal.length,
           itemBuilder: (context, index) {
-            return MealItem(weidth, height, meal[index],false);
+            return MealItem(weidth, height, meal[index],true);
           }),
     );
   }

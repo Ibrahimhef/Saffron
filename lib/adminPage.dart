@@ -1,5 +1,5 @@
 import 'package:provider/provider.dart';
-import 'package:swe444/List_info.dart';
+import 'package:swe444/List_info_admin.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -69,18 +69,9 @@ class admin_page extends State<Admin_page> {
           ],
           onTap: selepage,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                new MaterialPageRoute(
-                    builder: (context) => new AddPage(weidth, height, user)));
-          },
-          backgroundColor: Color(0xff262523),
-          child: Icon(Icons.add),
-        ),
+
         body: Container(
-          child: new ListInfo(weidth, height),
+          child: new ListInfo_admin(weidth, height),
         ),
       ),
     );
@@ -92,18 +83,17 @@ class admin_page extends State<Admin_page> {
       () {
         if (index < 6) {
           setState(() {
-            listInfo.category = index;
+            listInfo_admin.category = index;
             _category = index;
           });
         } else {
           CoolAlert.show(
               context: context,
-              type: CoolAlertType.warning,
+              type: CoolAlertType.confirm,
               barrierDismissible: false,
-              text: "Are you want to logout ?",
+              text: "Are you sure want to logout?",
               onConfirmBtnTap: () async {
                 await _auth.SignOut();
-                Navigator.of(context).pop();
                 Navigator.of(context).pop();
               });
         }

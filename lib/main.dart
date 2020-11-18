@@ -4,6 +4,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swe444/Services/auth.dart';
+import 'package:swe444/adminPage.dart';
 import 'package:swe444/models/user.dart';
 import 'package:swe444/wrapper.dart';
 import 'login.dart';
@@ -71,6 +72,7 @@ class LoginPage extends StatelessWidget {
   }
 }
 
+
 class SingupPage extends StatelessWidget {
   final Function toggleView;
 
@@ -113,5 +115,17 @@ class catogory extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final weidth = MediaQuery.of(context).size.width;
     return Catogory(weidth, height, user);
+  }
+}
+
+class admin extends StatelessWidget {
+  final User user;
+
+  const admin(this.user);
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final weidth = MediaQuery.of(context).size.width;
+    return Admin_page(weidth, height, user);
   }
 }

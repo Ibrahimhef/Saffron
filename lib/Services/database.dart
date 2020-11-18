@@ -5,15 +5,23 @@ import 'dart:math';
 
 class DatabaseService {
   final String uid;
+
   DatabaseService({this.uid});
+
   final CollectionReference userCollection =
       Firestore.instance.collection("user");
   final CollectionReference mealCollection =
       Firestore.instance.collection("meals");
+
   Future insertUser(
       String uid, String full_name, String email, String password) async {
-    return await userCollection.document(uid).setData(
-        {'uid': uid, 'name': full_name, "email": email, "password": password});
+    return await userCollection.document(uid).setData({
+      'uid': uid,
+      'name': full_name,
+      "email": email,
+      "password": password,
+      "admin": false
+    });
   }
 
 // method for insert meal info into database
@@ -37,28 +45,44 @@ class DatabaseService {
       'steps': step,
       'duration': duration,
       'email': email,
-      'imageURL': imageURL
+      'imageURL': imageURL,
+      'display': false
     });
   }
 
   Future removeMeal(String id) {
     mealCollection.document(id).delete();
-
   }
-
+  Future makeVisible (Meal m)async{
+    // mealCollection.document(id).setData({'display':true});
+    return await mealCollection.document("${m.id}").setData({
+      'id': "${m.id}",
+      "category": m.category,
+      'title': m.title,
+      'description': m.description,
+      'ingredients': m.ingredients,
+      'steps': m.step,
+      'duration': m.duration,
+      'email': m.email,
+      'imageURL': m.imageURL,
+      'display': true
+    });
+  }
 // method for display list of meals info into screen(private)
   List<Meal> _mealListFromSnapShot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Meal(
-          id: doc.data['id'] ?? '',
-          title: doc.data['title'] ?? '',
-          description: doc.data['description'] ?? '',
-          category: doc.data['category'] ?? 0,
-          ingredients: doc.data['ingredients'] ?? '',
-          step: doc.data['steps'] ?? '',
-          duration: doc.data['duration'] ?? 0,
-          email: doc.data['email'] ?? '',
-          imageURL: doc.data['imageURL'] ?? '');
+        display: doc.data['display'] ?? false,
+        id: doc.data['id'] ?? '',
+        title: doc.data['title'] ?? '',
+        description: doc.data['description'] ?? '',
+        category: doc.data['category'] ?? 0,
+        ingredients: doc.data['ingredients'] ?? '',
+        step: doc.data['steps'] ?? '',
+        duration: doc.data['duration'] ?? 0,
+        email: doc.data['email'] ?? '',
+        imageURL: doc.data['imageURL'] ?? '',
+      );
     }).toList();
   }
 
@@ -72,7 +96,8 @@ class DatabaseService {
           uid: doc.data['uid'] ?? '',
           name: doc.data['name'] ?? '',
           email: doc.data['email'] ?? '',
-          password: doc.data['password'] ?? '');
+          password: doc.data['password'] ?? '',
+          admin: doc.data['admin'] ?? false);
     }).toList();
   }
 
